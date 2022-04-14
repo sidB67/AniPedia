@@ -1,8 +1,7 @@
-import 'package:anipedia/UI/loadingscreen/loadingScreen.dart';
+import 'package:anipedia/UI/loadingscreen/loadingscreen.dart';
 import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'UI/homescreen/homepage.dart';
 
 void main() {
   runApp(const MyApp());

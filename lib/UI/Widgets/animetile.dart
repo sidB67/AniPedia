@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../models/anime.dart';
+import '../../models/anime.dart';
 
 class AnimeTile extends StatelessWidget {
   const AnimeTile({Key? key, required this.animeData}) : super(key: key);
@@ -8,7 +7,7 @@ class AnimeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 20, bottom: 5),
+      margin: const EdgeInsets.only(right: 20, bottom: 5),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),

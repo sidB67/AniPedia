@@ -2,7 +2,8 @@ import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../animetile.dart';
+import '../Widgets/animetile.dart';
+import '../Widgets/loadmorebutton.dart';
 import 'category_heading.dart';
 import 'extended_appbar.dart';
 
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
     final currentAnime =
         Provider.of<AnimeProvider>(context, listen: false).currentSeason;
     return Scaffold(
-      backgroundColor: Color(0xffF3F1F5),
+      backgroundColor: const Color(0xffF3F1F5),
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
@@ -30,16 +31,20 @@ class HomePage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: const EdgeInsets.only(left: 20, top: 20),
               height: 300,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: topAnime.length,
+                  itemCount: 6,
                   itemBuilder: (context, idx) {
-                    return AnimeTile(
-                      animeData: topAnime[idx],
-                    );
+                    return idx < 5
+                        ? AnimeTile(
+                            animeData: topAnime[idx],
+                          )
+                        : LoadMoreButton(
+                            onPressed: () {},
+                          );
                   }),
             ),
           ),
@@ -53,11 +58,15 @@ class HomePage extends StatelessWidget {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: currentAnime.length,
+                  itemCount: 6,
                   itemBuilder: (context, idx) {
-                    return AnimeTile(
-                      animeData: currentAnime[idx],
-                    );
+                    return idx < 5
+                        ? AnimeTile(
+                            animeData: currentAnime[idx],
+                          )
+                        : LoadMoreButton(
+                            onPressed: () {},
+                          );
                   }),
             ),
           ),

@@ -40,7 +40,7 @@ class ExpandedAppBar extends StatelessWidget {
                 decoration: InputDecoration(
                     hintText: 'Search an Anime',
                     border: InputBorder.none,
-                    fillColor: Color(0xffD0D0D0),
+                    fillColor: const Color(0xffD0D0D0),
                     filled: true,
                     suffixIcon: IconButton(
                         onPressed: () {},

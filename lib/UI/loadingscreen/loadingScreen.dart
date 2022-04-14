@@ -13,14 +13,12 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initialiseState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -34,26 +32,26 @@ class _LoadingScreenState extends State<LoadingScreen> {
           context: context,
           builder: (_) {
             return AlertDialog(
-              title: Text('Unable to Load Animes at this moment'),
+              title: const Text('Unable to Load Animes at this moment'),
               content: Text(e.toString()),
               actions: [
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('OK'))
+                    child: const Text('OK'))
               ],
             );
           });
     } finally {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: ((context) => HomePage())));
+          context, MaterialPageRoute(builder: ((context) => const HomePage())));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),
