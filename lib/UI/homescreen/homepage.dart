@@ -1,5 +1,8 @@
+import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../animetile.dart';
 import 'category_heading.dart';
 import 'extended_appbar.dart';
 
@@ -9,6 +12,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: Provider.of<AnimeProvider>(context, listen: false)
+              .getCurrentAnime),
+      backgroundColor: Color(0xffF3F1F5),
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
@@ -29,50 +36,8 @@ class HomePage extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: 6,
                   itemBuilder: (context, idx) {
-                    return Container(
-                      margin: EdgeInsets.only(right: 20, bottom: 5),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black,
-                                blurRadius: 2,
-                                offset: Offset(3.0, 4.0)),
-                          ]),
-                      width: 220,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          //For image of the anime
-                          Container(
-                            width: double.infinity,
-                            height: 180,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
-                              child: Image.network(
-                                'https://cdn.myanimelist.net/images/anime/1493/116732l.jpg',
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          //For title of anime
-                          Container(
-                            margin: const EdgeInsets.only(left: 10, top: 7),
-                            width: 200,
-                            child: Text(
-                              '${idx + 1}. Naruto Shippuden',
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          )
-                        ],
-                      ),
+                    return AnimeTile(
+                      idx: idx,
                     );
                   }),
             ),
@@ -89,12 +54,8 @@ class HomePage extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: 6,
                   itemBuilder: (context, idx) {
-                    return Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(20)),
-                      width: 220,
+                    return AnimeTile(
+                      idx: idx,
                     );
                   }),
             ),

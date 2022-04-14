@@ -4,7 +4,7 @@ class Anime {
   final String title;
   final int no_of_episodes;
   final String status;
-  final int score;
+  final num score;
   final int rank;
   final String synopsis;
   final String season;
