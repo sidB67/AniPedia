@@ -14,17 +14,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topAnime =
-        Provider.of<AnimeProvider>(context, listen: false).topAnime;
-    final currentAnime =
-        Provider.of<AnimeProvider>(context, listen: false).currentSeason;
+    final topAnime = Provider.of<AnimeProvider>(context).topAnime;
+    final currentAnime = Provider.of<AnimeProvider>(context).currentSeason;
     final currentSeasonPages =
-        Provider.of<AnimeProvider>(context, listen: false).curreSeasonPages;
+        Provider.of<AnimeProvider>(context).curreSeasonPages;
     return Scaffold(
       backgroundColor: const Color(0xffF3F1F5),
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+          SliverAppBar(
               pinned: true,
               centerTitle: true,
               title: Text('AniPedia'),

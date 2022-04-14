@@ -1,9 +1,15 @@
+import 'package:anipedia/UI/searchscreen/searchscreen.dart';
 import 'package:flutter/material.dart';
 
 class ExpandedAppBar extends StatelessWidget {
-  const ExpandedAppBar({
+  ExpandedAppBar({
     Key? key,
   }) : super(key: key);
+  TextEditingController _controller = TextEditingController();
+  @override
+  void dispose() {
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +43,30 @@ class ExpandedAppBar extends StatelessWidget {
             children: [
               Flexible(
                   child: TextField(
+                onEditingComplete: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchScreen(
+                                name: _controller.text,
+                              )));
+                },
+                controller: _controller,
                 decoration: InputDecoration(
                     hintText: 'Search an Anime',
                     border: InputBorder.none,
                     fillColor: const Color(0xffD0D0D0),
                     filled: true,
                     suffixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SearchScreen(
+                                        name: _controller.text,
+                                      )));
+                        },
                         icon: const Icon(
                           Icons.search,
                           color: Colors.black,

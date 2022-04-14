@@ -42,8 +42,7 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final currentAnime =
-        Provider.of<AnimeProvider>(context, listen: false).currentSeason;
+    final currentAnime = Provider.of<AnimeProvider>(context).currentSeason;
     return Scaffold(
       body: SafeArea(
         child: Column(

@@ -27,7 +27,7 @@ class AnimeProvider with ChangeNotifier {
 
   Future<void> getTopAnime() async {
     _topAnime = [];
-    final url = Uri.parse('https://api.jikan.moe/v4/top/anime');
+    final url = Uri.parse('https://api.jikan.moe/v4/top/anime?page=1');
     final response = await http.get(url);
     final responseData = json.decode(response.body);
     final extractedData = responseData["data"] as List;
@@ -78,7 +78,7 @@ class AnimeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getSearhAnime(String name, int page) async {
+  Future<void> getSearchAnime(String name, int page) async {
     if (page == 1) {
       _searchAnime = [];
     }
