@@ -26,7 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     try {
       await Provider.of<AnimeProvider>(context, listen: false).getTopAnime();
       await Provider.of<AnimeProvider>(context, listen: false)
-          .getCurrentAnime();
+          .getCurrentAnime(1);
     } catch (e) {
       showDialog(
           context: context,

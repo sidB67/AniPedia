@@ -1,3 +1,5 @@
+import 'package:anipedia/UI/CurrentlyAiring/currentlyairingscreen.dart';
+import 'package:anipedia/UI/TopAnime/topanime.dart';
 import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +18,8 @@ class HomePage extends StatelessWidget {
         Provider.of<AnimeProvider>(context, listen: false).topAnime;
     final currentAnime =
         Provider.of<AnimeProvider>(context, listen: false).currentSeason;
+    final currentSeasonPages =
+        Provider.of<AnimeProvider>(context, listen: false).curreSeasonPages;
     return Scaffold(
       backgroundColor: const Color(0xffF3F1F5),
       body: CustomScrollView(
@@ -43,7 +47,14 @@ class HomePage extends StatelessWidget {
                             animeData: topAnime[idx],
                           )
                         : LoadMoreButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TopAnimeScreen(
+                                            topAnime: topAnime,
+                                          )));
+                            },
                           );
                   }),
             ),
@@ -64,9 +75,14 @@ class HomePage extends StatelessWidget {
                         ? AnimeTile(
                             animeData: currentAnime[idx],
                           )
-                        : LoadMoreButton(
-                            onPressed: () {},
-                          );
+                        : LoadMoreButton(onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CurrentlyAiringScreen(
+                                          maxPageRequest: currentSeasonPages,
+                                        )));
+                          });
                   }),
             ),
           ),
