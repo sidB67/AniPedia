@@ -42,10 +42,7 @@ class AnimeProvider with ChangeNotifier {
           season: animeData["season"] ?? '',
           year: animeData["year"] ?? 0));
     });
-    print(_topAnime.length);
-    _topAnime.forEach((ele) {
-      print(ele.no_of_episodes);
-    });
+
     notifyListeners();
   }
 

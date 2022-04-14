@@ -1,3 +1,4 @@
+import 'package:anipedia/UI/loadingscreen/loadingScreen.dart';
 import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(),
-        home: const HomePage(),
+        home: const LoadingScreen(),
       ),
     );
   }

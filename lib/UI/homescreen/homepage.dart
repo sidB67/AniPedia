@@ -11,10 +11,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topAnime =
+        Provider.of<AnimeProvider>(context, listen: false).topAnime;
+    final currentAnime =
+        Provider.of<AnimeProvider>(context, listen: false).currentSeason;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-          onPressed: Provider.of<AnimeProvider>(context, listen: false)
-              .getCurrentAnime),
       backgroundColor: Color(0xffF3F1F5),
       body: CustomScrollView(
         slivers: [
@@ -34,10 +35,10 @@ class HomePage extends StatelessWidget {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 6,
+                  itemCount: topAnime.length,
                   itemBuilder: (context, idx) {
                     return AnimeTile(
-                      idx: idx,
+                      animeData: topAnime[idx],
                     );
                   }),
             ),
@@ -52,10 +53,10 @@ class HomePage extends StatelessWidget {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 6,
+                  itemCount: currentAnime.length,
                   itemBuilder: (context, idx) {
                     return AnimeTile(
-                      idx: idx,
+                      animeData: currentAnime[idx],
                     );
                   }),
             ),

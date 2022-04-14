@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../models/anime.dart';
+
 class AnimeTile extends StatelessWidget {
-  const AnimeTile({Key? key, this.idx}) : super(key: key);
-  final idx;
+  const AnimeTile({Key? key, required this.animeData}) : super(key: key);
+  final Anime animeData;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +28,7 @@ class AnimeTile extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               child: Image.network(
-                'https://cdn.myanimelist.net/images/anime/1493/116732l.jpg',
+                animeData.image_url,
                 fit: BoxFit.fill,
               ),
             ),
@@ -36,7 +38,7 @@ class AnimeTile extends StatelessWidget {
             margin: const EdgeInsets.only(left: 10, top: 10),
             width: 200,
             child: Text(
-              '${idx + 1}. Naruto Shippuden',
+              animeData.title,
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -45,21 +47,21 @@ class AnimeTile extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 10, top: 12),
+            margin: const EdgeInsets.only(left: 10, top: 2),
             width: 200,
             child: RichText(
-              text: const TextSpan(
-                text: 'Score : ',
-                style: TextStyle(
+              text: TextSpan(
+                text: 'Rank : ',
+                style: const TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700),
                 children: [
                   TextSpan(
-                    text: '9/10',
-                    style: TextStyle(
+                    text: '${animeData.rank}',
+                    style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
                 ],
@@ -67,21 +69,43 @@ class AnimeTile extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 10, top: 5),
+            margin: const EdgeInsets.only(left: 10, top: 2),
             width: 200,
             child: RichText(
-              text: const TextSpan(
-                text: 'Status : ',
-                style: TextStyle(
+              text: TextSpan(
+                text: 'Score : ',
+                style: const TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700),
                 children: [
                   TextSpan(
-                    text: 'Finished Airing',
-                    style: TextStyle(
+                    text: '${animeData.score}/10',
+                    style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 10, top: 2),
+            width: 200,
+            child: RichText(
+              text: TextSpan(
+                text: 'Status : ',
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700),
+                children: [
+                  TextSpan(
+                    text: animeData.status,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
                 ],
