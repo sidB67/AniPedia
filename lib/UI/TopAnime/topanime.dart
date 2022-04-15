@@ -1,5 +1,6 @@
 import 'package:anipedia/UI/Widgets/animetile.dart';
 import 'package:anipedia/UI/homescreen/category_heading.dart';
+import 'package:anipedia/UI/sizeconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,12 +44,11 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                 margin: const EdgeInsets.only(left: 20.0, top: 20, bottom: 10),
                 child: GridView.builder(
                     itemCount: widget.topAnime.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 2,
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.68),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 2,
+                        crossAxisCount: 2,
+                        mainAxisExtent: 310),
                     itemBuilder: (ctx, idx) {
                       return Container(
                           height: 300,

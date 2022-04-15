@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../models/anime.dart';
+import '../sizeconfig.dart';
 
 class AnimeTile extends StatelessWidget {
   const AnimeTile({Key? key, required this.animeData}) : super(key: key);
   final Anime animeData;
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
       margin: const EdgeInsets.only(right: 20, bottom: 5),
       decoration: BoxDecoration(
@@ -15,7 +17,8 @@ class AnimeTile extends StatelessWidget {
             BoxShadow(
                 color: Colors.black, blurRadius: 2, offset: Offset(3.0, 4.0)),
           ]),
-      width: 220,
+      width: 180,
+      height: SizeConfig.safeBlockVertical * 300,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,32 +38,32 @@ class AnimeTile extends StatelessWidget {
           //For title of anime
           Container(
             margin: const EdgeInsets.only(left: 10, top: 10),
-            width: 200,
+            width: SizeConfig.safeBlockHorizontal * 200,
             child: Text(
               animeData.title,
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700),
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 10, top: 2),
+            margin: const EdgeInsets.only(left: 10, top: 10),
             width: 200,
             child: RichText(
               text: TextSpan(
                 text: 'Rank : ',
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.w700),
                 children: [
                   TextSpan(
                     text: '${animeData.rank}',
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500),
                   ),
                 ],
@@ -73,16 +76,16 @@ class AnimeTile extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: 'Score : ',
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.w700),
                 children: [
                   TextSpan(
                     text: '${animeData.score}/10',
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500),
                   ),
                 ],
@@ -95,16 +98,16 @@ class AnimeTile extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: 'Status : ',
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.w700),
                 children: [
                   TextSpan(
                     text: animeData.status,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500),
                   ),
                 ],

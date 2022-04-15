@@ -1,5 +1,6 @@
 import 'package:anipedia/UI/Widgets/animetile.dart';
 import 'package:anipedia/UI/homescreen/category_heading.dart';
+import 'package:anipedia/UI/sizeconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -77,7 +78,7 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
                             mainAxisSpacing: 10,
                             crossAxisSpacing: 2,
                             crossAxisCount: 2,
-                            childAspectRatio: 0.68),
+                            mainAxisExtent: 310),
                     itemBuilder: (ctx, idx) {
                       return Container(
                           height: 300,

@@ -1,5 +1,5 @@
 import 'package:anipedia/UI/Widgets/animetile.dart';
-import 'package:anipedia/UI/homescreen/category_heading.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool isLoadingScreen = false;
   bool isLoading = false;
   int page = 2;
@@ -64,7 +64,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       body: SafeArea(
         child: isLoadingScreen
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : Column(
@@ -110,7 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   if (isLoading)
                     Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: const [

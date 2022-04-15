@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../Widgets/animetile.dart';
 import '../Widgets/loadmorebutton.dart';
+import '../sizeconfig.dart';
 import 'category_heading.dart';
 import 'extended_appbar.dart';
 
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final topAnime = Provider.of<AnimeProvider>(context).topAnime;
     final currentAnime = Provider.of<AnimeProvider>(context).currentSeason;
     final currentSeasonPages =
