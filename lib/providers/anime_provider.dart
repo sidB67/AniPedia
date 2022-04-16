@@ -73,7 +73,6 @@ class AnimeProvider with ChangeNotifier {
           season: animeData["season"] ?? '',
           year: animeData["year"] ?? 0));
     });
-    print(_currentSeason.length);
 
     notifyListeners();
   }
@@ -103,8 +102,22 @@ class AnimeProvider with ChangeNotifier {
           season: animeData["season"] ?? '',
           year: animeData["year"] ?? 0));
     });
-    print(_searchAnime.length);
 
     notifyListeners();
   }
+
+  // Future<void> getAnimePictures(List<Anime> anime) async {
+  //   anime.forEach((element) async {
+  //     final url = Uri.parse(
+  //         'https://api.jikan.moe/v4/anime/${element.mal_id}/pictures');
+  //     final response = await http.get(url);
+  //     final responseData = jsonDecode(response.body);
+  //     final extractedData = responseData["data"] as List;
+  //     extractedData.forEach((imgData) {
+  //       element.images.add(imgData["images"]["jpg"]["large_image_url"]);
+  //     });
+  //   });
+
+  //   print(anime[0].images);
+  // }
 }

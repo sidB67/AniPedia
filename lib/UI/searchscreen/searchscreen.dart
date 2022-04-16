@@ -100,11 +100,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 2,
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.68),
+                                  mainAxisExtent: 310),
                           itemBuilder: (ctx, idx) {
                             return Container(
                                 height: 300,
-                                child: AnimeTile(animeData: searchAnime[idx]));
+                                child: AnimeTile(
+                                  animeData: searchAnime[idx],
+                                  isAnimate: false,
+                                ));
                           }),
                     ),
                   ),

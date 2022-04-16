@@ -44,15 +44,18 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                 margin: const EdgeInsets.only(left: 20.0, top: 20, bottom: 10),
                 child: GridView.builder(
                     itemCount: widget.topAnime.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 2,
-                        crossAxisCount: 2,
-                        mainAxisExtent: 310),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 2,
+                            crossAxisCount: 2,
+                            mainAxisExtent: 310),
                     itemBuilder: (ctx, idx) {
                       return Container(
                           height: 300,
-                          child: AnimeTile(animeData: widget.topAnime[idx]));
+                          child: AnimeTile(
+                              isAnimate: false,
+                              animeData: widget.topAnime[idx]));
                     }),
               ),
             ),

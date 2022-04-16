@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anipedia/UI/homescreen/homepage.dart';
 import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +12,34 @@ class LoadingScreen extends StatefulWidget {
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
-class _LoadingScreenState extends State<LoadingScreen> {
+class _LoadingScreenState extends State<LoadingScreen>
+    with SingleTickerProviderStateMixin {
+  double _opacity = 0;
+  late Animation<double> _sizeAnimation;
+  late AnimationController _animationController;
+  late Animation<Offset> _position;
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 500), vsync: this);
+    _animationController.addListener((() => print(_animationController.value)));
+    _sizeAnimation =
+        CurvedAnimation(parent: _animationController, curve: Curves.easeIn);
+    _position = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+        .animate(_animationController);
+    _animationController.forward();
+    Timer(Duration(milliseconds: 10), () {
+      setState(() {
+        _opacity = 1;
+      });
+    });
     initialiseState();
   }
 
   @override
   void dispose() {
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -51,9 +72,37 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.blue[900]!,
+              Colors.blue[400]!,
+            ],
+          ),
+        ),
+        child: Center(
+          child: SlideTransition(
+            position: _position,
+            child: ScaleTransition(
+              scale: _sizeAnimation,
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 700),
+                opacity: _opacity,
+                child: const Text(
+                  'AniPedia',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

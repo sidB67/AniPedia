@@ -1,6 +1,7 @@
 class Anime {
   final int mal_id;
   final String image_url;
+  List images = [];
   final String title;
   final int no_of_episodes;
   final String status;

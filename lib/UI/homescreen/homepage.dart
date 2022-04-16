@@ -10,9 +10,16 @@ import '../sizeconfig.dart';
 import 'category_heading.dart';
 import 'extended_appbar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  @override
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -45,6 +52,7 @@ class HomePage extends StatelessWidget {
                     return idx < 5
                         ? AnimeTile(
                             animeData: topAnime[idx],
+                            isAnimate: true,
                           )
                         : LoadMoreButton(
                             onPressed: () {
@@ -74,6 +82,7 @@ class HomePage extends StatelessWidget {
                     return idx < 5
                         ? AnimeTile(
                             animeData: currentAnime[idx],
+                            isAnimate: true,
                           )
                         : LoadMoreButton(onPressed: () {
                             Navigator.push(

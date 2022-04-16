@@ -82,7 +82,10 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
                     itemBuilder: (ctx, idx) {
                       return Container(
                           height: 300,
-                          child: AnimeTile(animeData: currentAnime[idx]));
+                          child: AnimeTile(
+                            animeData: currentAnime[idx],
+                            isAnimate: false,
+                          ));
                     }),
               ),
             ),
