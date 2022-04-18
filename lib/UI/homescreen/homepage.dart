@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage>
           SliverAppBar(
               pinned: true,
               centerTitle: true,
-              title: Text('AniPedia'),
+              title: const Text('AniPedia'),
               expandedHeight: 125,
               flexibleSpace: ExpandedAppBar()),
           const CategoryHeading(

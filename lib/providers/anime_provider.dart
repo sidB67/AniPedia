@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'dart:convert';
 
 import 'package:anipedia/models/anime.dart';
@@ -57,7 +59,6 @@ class AnimeProvider with ChangeNotifier {
     final responseData = json.decode(response.body);
     if (page == 1) {
       curreSeasonPages = responseData["pagination"]["last_visible_page"];
-      print(curreSeasonPages);
     }
     final extractedData = responseData["data"] as List;
     extractedData.forEach((animeData) {
@@ -86,7 +87,6 @@ class AnimeProvider with ChangeNotifier {
     final responseData = json.decode(response.body);
     if (page == 1) {
       searchPages = responseData["pagination"]["last_visible_page"];
-      print(curreSeasonPages);
     }
     final extractedData = responseData["data"] as List;
     extractedData.forEach((animeData) {

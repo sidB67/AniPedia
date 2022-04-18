@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class Anime {
   final int mal_id;
   final String image_url;

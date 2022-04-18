@@ -5,7 +5,7 @@ import '../../models/anime.dart';
 import '../sizeconfig.dart';
 
 class AnimeTile extends StatefulWidget {
-  AnimeTile({Key? key, required this.animeData, required this.isAnimate})
+  const AnimeTile({Key? key, required this.animeData, required this.isAnimate})
       : super(key: key);
   final Anime animeData;
   final bool isAnimate;
@@ -22,17 +22,16 @@ class _AnimeTileState extends State<AnimeTile>
   late Animation<Offset> _position;
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _animationController.addListener(() {
-      print(_animationController.value);
-    });
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    _animationController.addListener(() {});
 
-    _position = Tween<Offset>(begin: Offset(0.5, 0), end: Offset(0, 0))
-        .animate(_animationController);
+    _position =
+        Tween<Offset>(begin: const Offset(0.5, 0), end: const Offset(0, 0))
+            .animate(_animationController);
 
     _animationController.forward();
-    Timer(Duration(milliseconds: 10), () {
+    Timer(const Duration(milliseconds: 10), () {
       setState(() {
         _margin = 0;
         _opacity = 1;
@@ -52,7 +51,7 @@ class _AnimeTileState extends State<AnimeTile>
     SizeConfig().init(context);
     return widget.isAnimate
         ? AnimatedContainer(
-            duration: Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 400),
             margin: EdgeInsets.only(left: _margin, right: 20, bottom: 5),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -66,7 +65,7 @@ class _AnimeTileState extends State<AnimeTile>
             width: 180,
             height: SizeConfig.safeBlockVertical * 300,
             child: AnimatedOpacity(
-              duration: Duration(milliseconds: 900),
+              duration: const Duration(milliseconds: 900),
               opacity: _opacity,
               child: AnimeTileContent(animeData: widget.animeData),
             ),
@@ -87,7 +86,7 @@ class _AnimeTileState extends State<AnimeTile>
               width: 180,
               height: SizeConfig.safeBlockVertical * 300,
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 900),
+                duration: const Duration(milliseconds: 900),
                 opacity: _opacity,
                 child: AnimeTileContent(animeData: widget.animeData),
               ),
@@ -110,7 +109,7 @@ class AnimeTileContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //For image of the anime
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 180,
           child: ClipRRect(
@@ -128,7 +127,7 @@ class AnimeTileContent extends StatelessWidget {
           width: SizeConfig.safeBlockHorizontal * 200,
           child: Text(
             animeData.title,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w700),
             overflow: TextOverflow.ellipsis,
           ),
@@ -139,14 +138,14 @@ class AnimeTileContent extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: 'Rank : ',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                   fontWeight: FontWeight.w700),
               children: [
                 TextSpan(
                   text: '${animeData.rank}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
                       fontWeight: FontWeight.w500),
@@ -161,14 +160,14 @@ class AnimeTileContent extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: 'Score : ',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                   fontWeight: FontWeight.w700),
               children: [
                 TextSpan(
                   text: '${animeData.score}/10',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
                       fontWeight: FontWeight.w500),
@@ -183,14 +182,14 @@ class AnimeTileContent extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: 'Status : ',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                   fontWeight: FontWeight.w700),
               children: [
                 TextSpan(
                   text: animeData.status,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
                       fontWeight: FontWeight.w500),

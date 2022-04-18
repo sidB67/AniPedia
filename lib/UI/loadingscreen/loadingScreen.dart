@@ -23,13 +23,14 @@ class _LoadingScreenState extends State<LoadingScreen>
     super.initState();
     _animationController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
-    _animationController.addListener((() => print(_animationController.value)));
+    _animationController.addListener((() {}));
     _sizeAnimation =
         CurvedAnimation(parent: _animationController, curve: Curves.easeIn);
-    _position = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
-        .animate(_animationController);
+    _position =
+        Tween<Offset>(begin: const Offset(1, 0), end: const Offset(0, 0))
+            .animate(_animationController);
     _animationController.forward();
-    Timer(Duration(milliseconds: 10), () {
+    Timer(const Duration(milliseconds: 10), () {
       setState(() {
         _opacity = 1;
       });
@@ -90,7 +91,7 @@ class _LoadingScreenState extends State<LoadingScreen>
             child: ScaleTransition(
               scale: _sizeAnimation,
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 700),
+                duration: const Duration(milliseconds: 700),
                 opacity: _opacity,
                 child: const Text(
                   'AniPedia',

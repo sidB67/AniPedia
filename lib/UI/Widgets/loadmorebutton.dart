@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class LoadMoreButton extends StatelessWidget {
   const LoadMoreButton({
     Key? key,
-    this.onPressed,
+    required this.onPressed,
   }) : super(key: key);
-  final onPressed;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

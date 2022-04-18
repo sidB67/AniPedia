@@ -5,8 +5,8 @@ class ExpandedAppBar extends StatelessWidget {
   ExpandedAppBar({
     Key? key,
   }) : super(key: key);
-  TextEditingController _controller = TextEditingController();
-  @override
+  final TextEditingController _controller = TextEditingController();
+
   void dispose() {
     _controller.dispose();
   }

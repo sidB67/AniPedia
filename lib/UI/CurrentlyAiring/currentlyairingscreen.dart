@@ -1,21 +1,19 @@
 import 'package:anipedia/UI/Widgets/animetile.dart';
-import 'package:anipedia/UI/homescreen/category_heading.dart';
-import 'package:anipedia/UI/sizeconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/anime_provider.dart';
 
 class CurrentlyAiringScreen extends StatefulWidget {
-  const CurrentlyAiringScreen({Key? key, this.maxPageRequest})
+  const CurrentlyAiringScreen({Key? key, required this.maxPageRequest})
       : super(key: key);
-  final maxPageRequest;
+  final num maxPageRequest;
   @override
   State<CurrentlyAiringScreen> createState() => _CurrentlyAiringScreenState();
 }
 
 class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool isLoading = false;
   int page = 2;
   void scrollListener() async {
@@ -55,7 +53,7 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.arrow_back_ios_new))),
+                    icon: const Icon(Icons.arrow_back_ios_new))),
             Container(
               margin: const EdgeInsets.only(left: 32, top: 7),
               width: 200,
@@ -80,7 +78,7 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
                             crossAxisCount: 2,
                             mainAxisExtent: 310),
                     itemBuilder: (ctx, idx) {
-                      return Container(
+                      return SizedBox(
                           height: 300,
                           child: AnimeTile(
                             animeData: currentAnime[idx],
@@ -91,7 +89,7 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
             ),
             if (isLoading)
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [

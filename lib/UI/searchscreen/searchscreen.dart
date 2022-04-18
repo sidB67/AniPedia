@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 import '../../providers/anime_provider.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key, this.name}) : super(key: key);
+  const SearchScreen({Key? key, required this.name}) : super(key: key);
 
-  final name;
+  final String name;
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
@@ -76,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.arrow_back_ios_new))),
+                          icon: const Icon(Icons.arrow_back_ios_new))),
                   Container(
                     margin: const EdgeInsets.only(left: 32, top: 7),
                     width: 200,
@@ -102,7 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   crossAxisCount: 2,
                                   mainAxisExtent: 310),
                           itemBuilder: (ctx, idx) {
-                            return Container(
+                            return SizedBox(
                                 height: 300,
                                 child: AnimeTile(
                                   animeData: searchAnime[idx],

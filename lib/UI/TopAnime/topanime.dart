@@ -1,14 +1,12 @@
 import 'package:anipedia/UI/Widgets/animetile.dart';
-import 'package:anipedia/UI/homescreen/category_heading.dart';
-import 'package:anipedia/UI/sizeconfig.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../providers/anime_provider.dart';
+import 'package:flutter/material.dart';
+
+import '../../models/anime.dart';
 
 class TopAnimeScreen extends StatefulWidget {
-  const TopAnimeScreen({Key? key, this.topAnime}) : super(key: key);
-  final topAnime;
+  const TopAnimeScreen({Key? key, required this.topAnime}) : super(key: key);
+  final List<Anime> topAnime;
   @override
   State<TopAnimeScreen> createState() => _TopAnimeScreenState();
 }
@@ -27,7 +25,7 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.arrow_back_ios_new))),
+                    icon: const Icon(Icons.arrow_back_ios_new))),
             Container(
               margin: const EdgeInsets.only(left: 32, top: 7),
               width: 200,
@@ -51,7 +49,7 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                             crossAxisCount: 2,
                             mainAxisExtent: 310),
                     itemBuilder: (ctx, idx) {
-                      return Container(
+                      return SizedBox(
                           height: 300,
                           child: AnimeTile(
                               isAnimate: false,
