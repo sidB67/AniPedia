@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage>
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+              automaticallyImplyLeading: false,
               pinned: true,
               centerTitle: true,
               title: const Text('AniPedia'),

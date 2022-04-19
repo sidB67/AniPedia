@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/anime_provider.dart';
+import '../homescreen/homepage.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key, required this.name}) : super(key: key);
@@ -74,7 +75,10 @@ class _SearchScreenState extends State<SearchScreen> {
                       margin: const EdgeInsets.only(left: 15, top: 10),
                       child: IconButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => HomePage())));
                           },
                           icon: const Icon(Icons.arrow_back_ios_new))),
                   Container(

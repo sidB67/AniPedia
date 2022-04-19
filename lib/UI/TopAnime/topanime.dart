@@ -1,4 +1,5 @@
 import 'package:anipedia/UI/Widgets/animetile.dart';
+import 'package:anipedia/UI/homescreen/homepage.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,10 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                 margin: const EdgeInsets.only(left: 15, top: 10),
                 child: IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => HomePage())));
                     },
                     icon: const Icon(Icons.arrow_back_ios_new))),
             Container(

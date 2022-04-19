@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/anime_provider.dart';
+import '../homescreen/homepage.dart';
 
 class CurrentlyAiringScreen extends StatefulWidget {
   const CurrentlyAiringScreen({Key? key, required this.maxPageRequest})
@@ -51,7 +52,10 @@ class _CurrentlyAiringScreenState extends State<CurrentlyAiringScreen> {
                 margin: const EdgeInsets.only(left: 15, top: 10),
                 child: IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => HomePage())));
                     },
                     icon: const Icon(Icons.arrow_back_ios_new))),
             Container(
