@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:anipedia/UI/AnimeDetailScren/animedetailscreen.dart';
 import 'package:flutter/material.dart';
 import '../../models/anime.dart';
 import '../sizeconfig.dart';
@@ -46,34 +47,22 @@ class _AnimeTileState extends State<AnimeTile>
     super.dispose();
   }
 
+  void onTap() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => AnimeDetailScreen(anime: widget.animeData)));
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return widget.isAnimate
-        ? AnimatedContainer(
-            duration: const Duration(milliseconds: 400),
-            margin: EdgeInsets.only(left: _margin, right: 20, bottom: 5),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 2,
-                      offset: Offset(3.0, 4.0)),
-                ]),
-            width: 180,
-            height: SizeConfig.safeBlockVertical * 300,
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 900),
-              opacity: _opacity,
-              child: AnimeTileContent(animeData: widget.animeData),
-            ),
-          )
-        : SlideTransition(
-            position: _position,
-            child: Container(
-              margin: const EdgeInsets.only(right: 20, bottom: 5),
+        ? GestureDetector(
+            onTap: onTap,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 400),
+              margin: EdgeInsets.only(left: _margin, right: 20, bottom: 5),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -89,6 +78,31 @@ class _AnimeTileState extends State<AnimeTile>
                 duration: const Duration(milliseconds: 900),
                 opacity: _opacity,
                 child: AnimeTileContent(animeData: widget.animeData),
+              ),
+            ),
+          )
+        : GestureDetector(
+            onTap: onTap,
+            child: SlideTransition(
+              position: _position,
+              child: Container(
+                margin: const EdgeInsets.only(right: 20, bottom: 5),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 2,
+                          offset: Offset(3.0, 4.0)),
+                    ]),
+                width: 180,
+                height: SizeConfig.safeBlockVertical * 300,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 900),
+                  opacity: _opacity,
+                  child: AnimeTileContent(animeData: widget.animeData),
+                ),
               ),
             ),
           );
