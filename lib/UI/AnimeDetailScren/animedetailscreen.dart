@@ -45,10 +45,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => const HomePage())));
+                          Navigator.pop(context);
                         },
                         icon: const Icon(
                           Icons.arrow_back_ios_new,
@@ -118,7 +115,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 30, left: 8, right: 8),
+              margin: const EdgeInsets.only(top: 30, left: 12, right: 12),
               child: const Text(
                 'Synopsis :',
                 style: TextStyle(
@@ -130,7 +127,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
+              margin: const EdgeInsets.only(top: 10, left: 12, right: 12),
               child: Text(
                 widget.anime.synopsis,
                 style: const TextStyle(
