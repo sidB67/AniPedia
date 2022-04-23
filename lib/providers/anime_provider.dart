@@ -13,6 +13,8 @@ class AnimeProvider with ChangeNotifier {
 
   List<Anime> _searchAnime = [];
 
+  List<Anime> _recommendationList = [];
+
   int curreSeasonPages = 1;
   int searchPages = 1;
   List<Anime> get currentSeason {
@@ -25,6 +27,10 @@ class AnimeProvider with ChangeNotifier {
 
   List<Anime> get searchAnime {
     return [..._searchAnime];
+  }
+
+  List<Anime> get recommendationAnime {
+    return [..._recommendationList];
   }
 
   Future<void> getTopAnime() async {
@@ -120,4 +126,45 @@ class AnimeProvider with ChangeNotifier {
 
   //   print(anime[0].images);
   // }
+  Future<void> animeRecommendations(int mal_id) async {
+    List mal_ids = [];
+    _recommendationList = [];
+    final url =
+        Uri.parse('https://api.jikan.moe/v4/anime/$mal_id/recommendations');
+
+    final response = await http.get(url);
+    final responseData = json.decode(response.body);
+
+    final extractedData = responseData["data"] as List;
+    extractedData.forEach((element) {
+      final elementData = element["entry"];
+
+      mal_ids.add(elementData["mal_id"]);
+    });
+    for (int i = 0; i < 4; i++) {
+      final url2 = Uri.parse('https://api.jikan.moe/v4/anime/${mal_ids[i]}');
+      final response2 = await http.get(url2);
+      final responseData2 = json.decode(response2.body);
+      print(url2);
+      try {
+        final animeData = responseData2["data"];
+
+        _recommendationList.add(Anime(
+            mal_id: mal_ids[i],
+            image_url: animeData["images"]["jpg"]["large_image_url"],
+            title: animeData["title"],
+            no_of_episodes: animeData["episodes"] ?? 0,
+            status: animeData["status"],
+            score: animeData["score"] ?? 0,
+            rank: animeData["rank"] ?? 0,
+            synopsis: animeData["synopsis"] ?? '',
+            season: animeData["season"] ?? '',
+            year: animeData["year"] ?? 0));
+      } catch (e) {
+        print(responseData2);
+        print(mal_ids[i]);
+        print(e);
+      }
+    }
+  }
 }

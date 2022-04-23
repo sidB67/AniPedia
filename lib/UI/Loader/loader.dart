@@ -15,7 +15,7 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 3500));
+        vsync: this, duration: Duration(milliseconds: 5000));
 
     _angle = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 360.0), weight: 1),
