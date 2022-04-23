@@ -134,7 +134,9 @@ class AnimeProvider with ChangeNotifier {
 
     final response = await http.get(url);
     final responseData = json.decode(response.body);
-
+    if (responseData["data"] == null) {
+      return;
+    }
     final extractedData = responseData["data"] as List;
     extractedData.forEach((element) {
       final elementData = element["entry"];
@@ -142,7 +144,11 @@ class AnimeProvider with ChangeNotifier {
       mal_ids.add(elementData["mal_id"]);
     });
     if (mal_ids.isNotEmpty) {
-      for (int i = 0; i < 4; i++) {
+      int recLen = 4;
+      if (recLen > mal_ids.length) {
+        recLen = mal_ids.length;
+      }
+      for (int i = 0; i < recLen; i++) {
         final url2 = Uri.parse('https://api.jikan.moe/v4/anime/${mal_ids[i]}');
         final response2 = await http.get(url2);
         final responseData2 = json.decode(response2.body);

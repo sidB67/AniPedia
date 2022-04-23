@@ -128,11 +128,12 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                                         heading: 'Status',
                                         subheading: widget.anime.status,
                                       ),
-                                      HeadinSubHeading(
-                                        heading: 'Aired',
-                                        subheading:
-                                            '${capitalise(widget.anime.season)} ${widget.anime.year}',
-                                      ),
+                                      if (widget.anime.season.isNotEmpty)
+                                        HeadinSubHeading(
+                                          heading: 'Aired',
+                                          subheading:
+                                              '${capitalise(widget.anime.season)} ${widget.anime.year}',
+                                        ),
                                     ],
                                   ))
                             ],
