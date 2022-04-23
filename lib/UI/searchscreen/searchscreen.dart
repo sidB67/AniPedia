@@ -76,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => HomePage())));
+                                  builder: ((context) => const HomePage())));
                         },
                         icon: const Icon(Icons.arrow_back_ios_new))),
                 Container(

@@ -141,29 +141,31 @@ class AnimeProvider with ChangeNotifier {
 
       mal_ids.add(elementData["mal_id"]);
     });
-    for (int i = 0; i < 4; i++) {
-      final url2 = Uri.parse('https://api.jikan.moe/v4/anime/${mal_ids[i]}');
-      final response2 = await http.get(url2);
-      final responseData2 = json.decode(response2.body);
-      print(url2);
-      try {
-        final animeData = responseData2["data"];
+    if (mal_ids.isNotEmpty) {
+      for (int i = 0; i < 4; i++) {
+        final url2 = Uri.parse('https://api.jikan.moe/v4/anime/${mal_ids[i]}');
+        final response2 = await http.get(url2);
+        final responseData2 = json.decode(response2.body);
+        print(url2);
+        try {
+          final animeData = responseData2["data"];
 
-        _recommendationList.add(Anime(
-            mal_id: mal_ids[i],
-            image_url: animeData["images"]["jpg"]["large_image_url"],
-            title: animeData["title"],
-            no_of_episodes: animeData["episodes"] ?? 0,
-            status: animeData["status"],
-            score: animeData["score"] ?? 0,
-            rank: animeData["rank"] ?? 0,
-            synopsis: animeData["synopsis"] ?? '',
-            season: animeData["season"] ?? '',
-            year: animeData["year"] ?? 0));
-      } catch (e) {
-        print(responseData2);
-        print(mal_ids[i]);
-        print(e);
+          _recommendationList.add(Anime(
+              mal_id: mal_ids[i],
+              image_url: animeData["images"]["jpg"]["large_image_url"],
+              title: animeData["title"],
+              no_of_episodes: animeData["episodes"] ?? 0,
+              status: animeData["status"],
+              score: animeData["score"] ?? 0,
+              rank: animeData["rank"] ?? 0,
+              synopsis: animeData["synopsis"] ?? '',
+              season: animeData["season"] ?? '',
+              year: animeData["year"] ?? 0));
+        } catch (e) {
+          print(responseData2);
+          print(mal_ids[i]);
+          print(e);
+        }
       }
     }
   }

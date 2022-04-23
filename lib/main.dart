@@ -1,4 +1,3 @@
-import 'package:anipedia/UI/Loader/loader.dart';
 import 'package:anipedia/UI/loadingscreen/loadingscreen.dart';
 import 'package:anipedia/providers/anime_provider.dart';
 import 'package:flutter/material.dart';

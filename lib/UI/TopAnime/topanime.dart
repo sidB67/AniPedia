@@ -27,7 +27,7 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => HomePage())));
+                              builder: ((context) => const HomePage())));
                     },
                     icon: const Icon(Icons.arrow_back_ios_new))),
             Container(

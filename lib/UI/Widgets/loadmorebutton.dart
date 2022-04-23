@@ -28,7 +28,7 @@ class _LoadMoreButtonState extends State<LoadMoreButton> {
               setState(() {
                 color = Colors.blue;
               });
-              Timer(Duration(milliseconds: 50), widget.onPressed);
+              Timer(const Duration(milliseconds: 50), widget.onPressed);
             },
             child: Container(
               width: 50,

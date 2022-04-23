@@ -178,7 +178,8 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.only(top: 10, left: 12, bottom: 10),
+                      margin:
+                          const EdgeInsets.only(top: 10, left: 12, bottom: 10),
                       height: SizeConfig.safeBlockVertical * 300,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
