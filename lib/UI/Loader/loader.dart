@@ -15,30 +15,21 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 5000));
+        vsync: this, duration: const Duration(milliseconds: 1800));
 
-    _angle = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 360.0), weight: 1),
-      TweenSequenceItem(tween: Tween(begin: 360.0, end: 720.0), weight: 1),
-      TweenSequenceItem(tween: Tween(begin: 720.0, end: 1080.0), weight: 1),
-      TweenSequenceItem(tween: Tween(begin: 1080.0, end: 1440.0), weight: 1),
-    ]).animate(_controller)
+    _angle = Tween<double>(begin: -2 * pi, end: 2 * pi).animate(_controller)
       ..addListener(() {
         setState(() {});
       });
-    _angle.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        if (widget.isLoading) {
-          _controller.reverse();
-        }
-      }
-      if (status == AnimationStatus.dismissed) {
-        if (widget.isLoading) {
-          _controller.forward();
-        }
-      }
-    });
+    // _angle.addStatusListener((status) {
+    //   if (status == AnimationStatus.completed) {
+    //     if (widget.isLoading) {
+    //       _controller.repeat();
+    //     }
+    //   }
+    // });
     _controller.forward();
+    _controller.repeat();
     super.initState();
   }
 
@@ -67,7 +58,7 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Transform.rotate(
-              angle: _angle.value / 360 * 2 * pi,
+              angle: _angle.value,
               child: Image.asset(
                 'asset/loadingicon.png',
                 color: Colors.white,

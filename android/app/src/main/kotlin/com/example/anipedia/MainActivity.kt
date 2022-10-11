@@ -1,4 +1,4 @@
-package com.example.anipedia
+package com.sidb.anipedia
 
 import io.flutter.embedding.android.FlutterActivity
 
